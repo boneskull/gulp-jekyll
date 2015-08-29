@@ -6,7 +6,10 @@ var spawn = require('win-spawn');
 var dargs = require('dargs');
 
 module.exports = function jekyll(options) {
-  var passedArgs = dargs(options || {}, ['bundleExec']);
+  var passedArgs = dargs(options || {}, {
+    excludes: ['bundleExec']
+  });
+
   var jekyllArgs = (options.bundleExec ? ['bundle', 'exec'] : [])
     .concat('jekyll', 'build')
     .concat(passedArgs);
